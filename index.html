@@ -3,28 +3,45 @@
 <head>
     <meta charset="utf-8">
     <title>vuejs app</title>
+    <!-- Start include vuejs lib -->
     <script src="vue.js"></script>
-
+    <!-- End include vuejs lib -->
 </head>
 <body>
+
+<!--
+Vuejs create HTML template based on our HTML code internally
+and uses this html template to create a real HTML which render as a dom
+then
+there is layer in the middle which is Vuejs instance
+==========================
+Vuejs instance role :
+ takes our HTML code then
+ creates a template render this template and then
+ output the final html
+==========================
+-->
+
+<!-- Start the element which controlled by Vuejs -->
 <div id="app">
     <input type="text" v-on:input="changeTitle">
     <p>{{ title }}</p>
 </div>
-
+<!-- End the element which controlled by Vuejs -->
 <script>
+    // start Vuejs instance
     new Vue({
-                el: '#app',
-                data: {
-                    title: 'Hello World!'
-                },
-                methods: {
-                    changeTitle: function (event)
-                    {
-                        this.title = event.target.value;
-                    }
-                }
-            });
+        el: '#app',
+        data: {
+            title: 'Hello World!'
+        },
+        methods: {
+            changeTitle: function (event) {
+                this.title = event.target.value;
+            }
+        }
+    });
+    // end Vuejs instance
 </script>
 </body>
 </html>
