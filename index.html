@@ -64,12 +64,17 @@ is called interpolation or string interpolation
 <hr>
 <button v-on:click="increase">Click Me</button>
 <p>{{ counter }}</p>
+<p v-on:mousemove="updateCoordinates">Coordinates: ({{ x }},{{ y }})</p>
     <!--
     v-on: an argument ===> which is the name of event
     to listen something to receive something from out template
     what we receive ==> an event
     v-on:click="code of function to execute"
 
+    ========================================
+    there is event object formed by javascript or dom
+    which hold some information for example it holds the co ordinates
+    where this click happened
 
     -->
 </div>
@@ -83,6 +88,8 @@ is called interpolation or string interpolation
                     link: 'http://google.com',
                     finishedLink: '<a href="http://google.com">Google</a>',
                     counter: 0,
+                    x: 0,
+                    y: 0,
 
                 },
                 methods: {
@@ -104,6 +111,11 @@ is called interpolation or string interpolation
                     increase()
                     {
                         this.counter++;
+                    },
+                    updateCoordinates(event)
+                    {
+                        this.x=event.clientX;
+                        this.y=event.clientY;
                     }
                 }
             });
