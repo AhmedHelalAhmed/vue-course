@@ -20,27 +20,93 @@ Vuejs instance role :
  creates a template render this template and then
  output the final html
 ==========================
+{{ }}
+is called interpolation or string interpolation
+==========================
 -->
 
 <!-- Start the element which controlled by Vuejs -->
 <div id="app">
-    <input type="text" v-on:input="changeTitle">
-    <p>{{ title }}</p>
+    Enter Title : <input type="text" v-on:input="changeTitle">
+    <p v-once>Title : {{ title }} - OR - : {{ title }}</p>
+    <!--
+        v-once
+        the element will render once do not change if the property change
+    -->
+    <p>{{ sayHello() }}</p>
+    <hr>
+    <!--
+         <a href="{{ link }}">Google</a>
+         ==> we can not use {{}} in HTML element attribute
+         so we have to use directive which is v-bind
+         ==> the directive tell vuejs hi do not use the normal attribute (HTML attribute) here
+         instead bind it
+         we are in vuejs template language no {{}} needed
+         as we are in vuejs template
+
+         v-bind ==> bind something to my data
+
+
+    -->
+    <a v-bind:href="link">Google</a>
+    <!-- v-bind directive -->
+    <p>{{ finishedLink }}</p>
+    <!--
+    the link as text
+    this good for cross side scripting
+    -->
+    <!--
+    if you are sure that the script is clean
+    use
+    v-html="your html code here"
+    -->
+    <p v-html="finishedLink"></p>
+<hr>
+<button v-on:click="increase">Click Me</button>
+<p>{{ counter }}</p>
+    <!--
+    v-on: an argument ===> which is the name of event
+    to listen something to receive something from out template
+    what we receive ==> an event
+    v-on:click="code of function to execute"
+
+
+    -->
 </div>
 <!-- End the element which controlled by Vuejs -->
 <script>
     // start Vuejs instance
     new Vue({
-        el: '#app',
-        data: {
-            title: 'Hello World!'
-        },
-        methods: {
-            changeTitle: function (event) {
-                this.title = event.target.value;
-            }
-        }
-    });
+                el: '#app',
+                data: {
+                    title: 'Hello World!',
+                    link: 'http://google.com',
+                    finishedLink: '<a href="http://google.com">Google</a>',
+                    counter: 0,
+
+                },
+                methods: {
+                    changeTitle(event)
+                    {
+                        this.title = event.target.value;
+                    },
+                    sayHello()
+                    {
+                        // All usages will be re-rendered once the property changes
+                        this.title='Hello!';
+
+                        return 'Hello!';
+                    },
+                    giveTitle()
+                    {
+                        return this.title;
+                    },
+                    increase()
+                    {
+                        this.counter++;
+                    }
+                }
+            });
     // end Vuejs instance
 </script>
 </body>
