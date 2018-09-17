@@ -61,10 +61,10 @@ is called interpolation or string interpolation
     v-html="your html code here"
     -->
     <p v-html="finishedLink"></p>
-<hr>
-<button v-on:click="increase">Click Me</button>
-<p>{{ counter }}</p>
-<p v-on:mousemove="updateCoordinates">Coordinates: ({{ x }},{{ y }})</p>
+    <hr>
+    <button v-on:click="increase(2,$event)">Click Me</button>
+    <p>{{ counter }}</p>
+    <p v-on:mousemove="updateCoordinates">Coordinates: ({{ x }},{{ y }})</p>
     <!--
     v-on: an argument ===> which is the name of event
     to listen something to receive something from out template
@@ -75,6 +75,16 @@ is called interpolation or string interpolation
     there is event object formed by javascript or dom
     which hold some information for example it holds the co ordinates
     where this click happened
+    =========================================
+    how about passing our argument?
+    when increasing the counter we want to increase it by step
+    we passing as parameters
+    =========================================
+    how about passing my argument and creating the event object
+    here the naming is important
+    $event ==> protected name do not override
+    =========================================
+
 
     -->
 </div>
@@ -100,7 +110,7 @@ is called interpolation or string interpolation
                     sayHello()
                     {
                         // All usages will be re-rendered once the property changes
-                        this.title='Hello!';
+                        this.title = 'Hello!';
 
                         return 'Hello!';
                     },
@@ -108,15 +118,16 @@ is called interpolation or string interpolation
                     {
                         return this.title;
                     },
-                    increase()
-                    {
-                        this.counter++;
-                    },
                     updateCoordinates(event)
                     {
-                        this.x=event.clientX;
-                        this.y=event.clientY;
-                    }
+                        this.x = event.clientX;
+                        this.y = event.clientY;
+                    },
+                    increase(step,event)
+                    {
+                        console.log(event);
+                        this.counter +=step;
+                    },
                 }
             });
     // end Vuejs instance
