@@ -62,8 +62,11 @@ is called interpolation or string interpolation
     -->
     <p v-html="finishedLink"></p>
     <hr>
-    <button v-on:click="increase(2,$event)">Click Me</button>
-    <p>{{ counter }}</p>
+    <button v-on:click="increase(2,$event)">Click Me +2</button>
+    <button v-on:click="counter++">Click Me +1</button>
+    <p>( counter ) =======> {{ counter }}</p>
+    <p>( counter * 2 ) ====> {{ counter*2 }}</p>
+    <p>condition on ( counter * 2 ) <=======> {{ counter * 2 > 10 ? 'Great than 10' : 'Smaller that 10' }}</p>
     <p v-on:mousemove="updateCoordinates">
         Coordinates: ({{ x }},{{ y }})
         <span v-on:mousemove="dummy">using event DEAD SPOT</span>
@@ -102,6 +105,8 @@ is called interpolation or string interpolation
     to prevent the default
     =========================================
     keyboard event
+    =========================================
+    template expression like {{ }}
     =========================================
 
 
