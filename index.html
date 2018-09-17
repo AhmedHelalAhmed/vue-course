@@ -69,6 +69,10 @@ is called interpolation or string interpolation
         <span v-on:mousemove="dummy">using event DEAD SPOT</span>
         <span v-on:mousemove.stop="">using modifier DEAD SPOT</span>
     </p>
+    <hr>
+    for any key: <input type="text" v-on:keyup="alertMe"/>
+    <hr>
+    for submit of the input which is Enter (or space): <input type="text" v-on:keyup.enter.space="alertMeToSubmit"/>
     <!--
     v-on: an argument ===> which is the name of event
     to listen something to receive something from out template
@@ -96,6 +100,8 @@ is called interpolation or string interpolation
     =========================================
     .prevent
     to prevent the default
+    =========================================
+    keyboard event
     =========================================
 
 
@@ -144,6 +150,14 @@ is called interpolation or string interpolation
                     dummy(event)
                     {
                         event.stopPropagation();
+                    },
+                    alertMe(event)
+                    {
+                        alert('Alert!');
+                    },
+                    alertMeToSubmit()
+                    {
+                        alert('Alert on submit');
                     }
                 }
             });
