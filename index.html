@@ -64,7 +64,11 @@ is called interpolation or string interpolation
     <hr>
     <button v-on:click="increase(2,$event)">Click Me</button>
     <p>{{ counter }}</p>
-    <p v-on:mousemove="updateCoordinates">Coordinates: ({{ x }},{{ y }})</p>
+    <p v-on:mousemove="updateCoordinates">
+        Coordinates: ({{ x }},{{ y }})
+        <span v-on:mousemove="dummy">using event DEAD SPOT</span>
+        <span v-on:mousemove.stop="">using modifier DEAD SPOT</span>
+    </p>
     <!--
     v-on: an argument ===> which is the name of event
     to listen something to receive something from out template
@@ -83,6 +87,15 @@ is called interpolation or string interpolation
     how about passing my argument and creating the event object
     here the naming is important
     $event ==> protected name do not override
+    =========================================
+    modifier is the function in between
+    the time of the event and the response function of it
+    =========================================
+    .stop
+    stop propagation to stop modifier
+    =========================================
+    .prevent
+    to prevent the default
     =========================================
 
 
@@ -128,6 +141,10 @@ is called interpolation or string interpolation
                         console.log(event);
                         this.counter +=step;
                     },
+                    dummy(event)
+                    {
+                        event.stopPropagation();
+                    }
                 }
             });
     // end Vuejs instance
