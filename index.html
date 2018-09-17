@@ -75,7 +75,11 @@ is called interpolation or string interpolation
     <hr>
     for any key: <input type="text" v-on:keyup="alertMe"/>
     <hr>
-    for submit of the input which is Enter (or space): <input type="text" v-on:keyup.enter.space="alertMeToSubmit"/>
+    for submit of the input which is Enter (or space):
+    <input type="text" v-on:keyup.enter.space="alertMeToSubmit"/>
+    <hr>
+    <input type="text" v-model="name"/>
+    <p>{{ name }}</p>
     <!--
     v-on: an argument ===> which is the name of event
     to listen something to receive something from out template
@@ -108,6 +112,12 @@ is called interpolation or string interpolation
     =========================================
     template expression like {{ }}
     =========================================
+    two way data binding with v-model
+    this listen to change and when data change it
+    change it in vue instance hence it will change
+    in every please will be
+    =========================================
+
 
 
     -->
@@ -124,6 +134,7 @@ is called interpolation or string interpolation
                     counter: 0,
                     x: 0,
                     y: 0,
+                    name: 'Max',
 
                 },
                 methods: {
