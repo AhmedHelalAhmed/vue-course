@@ -80,6 +80,12 @@ is called interpolation or string interpolation
     <hr>
     <input type="text" v-model="name"/>
     <p>{{ name }}</p>
+    <hr>
+    <button v-on:click="increase(1,$event)">Increase</button>
+    <button v-on:click="decrease">Decrease</button>
+    <p>Counter: {{ counter }}</p>
+    <p>Result: {{ result }}</p>
+
     <!--
     v-on: an argument ===> which is the name of event
     to listen something to receive something from out template
@@ -135,6 +141,7 @@ is called interpolation or string interpolation
                     x: 0,
                     y: 0,
                     name: 'Max',
+                    result: '',
 
                 },
                 methods: {
@@ -160,8 +167,10 @@ is called interpolation or string interpolation
                     },
                     increase(step,event)
                     {
+
                         console.log(event);
-                        this.counter +=step;
+                        this.counter += step;
+                        this.result = this.counter > 5 ? 'Greater 5' : 'Smaller 5';
                     },
                     dummy(event)
                     {
@@ -174,7 +183,12 @@ is called interpolation or string interpolation
                     alertMeToSubmit()
                     {
                         alert('Alert on submit');
-                    }
+                    },
+                    decrease()
+                    {
+                        this.counter --;
+                        this.result = this.counter > 5 ? 'Greater 5' : 'Smaller 5';
+                    },
                 }
             });
     // end Vuejs instance
