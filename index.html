@@ -81,12 +81,16 @@ is called interpolation or string interpolation
     <input type="text" v-model="name"/>
     <p>{{ name }}</p>
     <hr>
-    <button v-on:click="increase(1,$event)">Increase</button>
-    <button v-on:click="decrease">Decrease</button>
+    <button v-on:click="counter++">Increase</button>
+    <button v-on:click="counter--">Decrease</button>
     <p>Counter: {{ counter }}</p>
-    <p>Result: {{ result }}</p>
+    <p>Result: {{ result() }} | {{ output }}</p> <!-- this will re-execute the method in result -->
+
+
+
 
     <!--
+    summary:-
     v-on: an argument ===> which is the name of event
     to listen something to receive something from out template
     what we receive ==> an event
@@ -123,6 +127,15 @@ is called interpolation or string interpolation
     change it in vue instance hence it will change
     in every please will be
     =========================================
+    data is not reactive
+    =========================================
+    known options for vue instance
+    el : Connect to Dom
+    data : Store Data to be used
+    methods : Methods of this vue instance
+    computed : Dependant properties
+    =========================================
+
 
 
 
@@ -141,7 +154,15 @@ is called interpolation or string interpolation
                     x: 0,
                     y: 0,
                     name: 'Max',
-                    result: '',
+                    secondCounter: 0,
+
+                },
+                computed:{
+                    output()
+                    {
+                        console.log('computed');
+                        return this.counter > 5 ? 'Greater 5' : 'Smaller 5';
+                    }
 
                 },
                 methods: {
@@ -170,7 +191,7 @@ is called interpolation or string interpolation
 
                         console.log(event);
                         this.counter += step;
-                        this.result = this.counter > 5 ? 'Greater 5' : 'Smaller 5';
+                        // this.result = this.counter > 5 ? 'Greater 5' : 'Smaller 5';
                     },
                     dummy(event)
                     {
@@ -187,8 +208,12 @@ is called interpolation or string interpolation
                     decrease()
                     {
                         this.counter --;
-                        this.result = this.counter > 5 ? 'Greater 5' : 'Smaller 5';
+                        // this.result = this.counter > 5 ? 'Greater 5' : 'Smaller 5';
                     },
+                    result()
+                    {
+                        return this.counter > 5 ? 'Greater 5' : 'Smaller 5';
+                    }
                 }
             });
     // end Vuejs instance
